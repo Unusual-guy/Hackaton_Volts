@@ -10,9 +10,8 @@ admin.initializeApp({
   databaseURL: "https://hackathon-29aee-default-rtdb.europe-west1.firebasedatabase.app"
 });
 
-// Устанавливаем связь с БД, в которой будем хранить список данных устройства (компания Volts):
+// Устанавливаем связь с БД, из которой будем брать конкретные данные устройства (компания Volts):
 const db = admin.firestore();
-const usersRef = db.collection('users');
 
 
 // Тело Yndex Cloude Function:
@@ -39,6 +38,8 @@ module.exports.skill = async (event) => {
     // Получаем и переводим в нижний регистр сказанную юзером фразу:
     const userUtterance = lowerCase(request.original_utterance);
 
+
+
     // Обращаемся к БД за данными:
     const userSnapshot = await usersRef.where(server.FieldPath.documentId(), '==', userId).get();
     let userData = {};
@@ -48,13 +49,18 @@ module.exports.skill = async (event) => {
       userData = doc.data();
     });
 
+
+
+    
     // Определяем намерение пользователя:
     const intent = getIntent(userUtterance, intant);
 
 
+
+
+
     // ДИАЛОГ С ПОЛЬЗОВАТЕЛЕМ:
-
-
+    if (intent === INTENT.give_idDevice)
 
     ......
    
@@ -67,7 +73,7 @@ module.exports.skill = async (event) => {
 
 
 
-    
+
     // Ответ Алисе:
     return {
       version,
