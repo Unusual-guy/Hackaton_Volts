@@ -49,7 +49,7 @@ module.exports.skill = async (event) => {
     });
 
     // Определяем намерение пользователя:
-    const intent = getIntent(userUtterance, context);
+    const intent = getIntent(userUtterance, intant);
 
 
     // ДИАЛОГ С ПОЛЬЗОВАТЕЛЕМ:
@@ -60,18 +60,14 @@ module.exports.skill = async (event) => {
    
 
 
-    // Запись в БД нового состояния приложения сразу после ответа Алисе (т.е. после return), чтобы отвечать максимально быстро:
-    setImmediate(async (userId, memory, context, isReview, serverTime, memTime) => {
-      await usersRef.doc(userId).set({
-        ctx: context,
-        mem: memory,
-        review: isReview,
-        timestamp1: serverTime,
-        timestamp2: memTime
-      });
-    }, userId, memory, context, isReview, serverTime, memTime);
 
 
+
+
+
+
+
+    
     // Ответ Алисе:
     return {
       version,
