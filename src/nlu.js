@@ -44,8 +44,5 @@ module.exports = {
 
    .....
 
-
-    // Всё остальное (т.е. непонятое):
-    return 'fallback';
   }
 };
