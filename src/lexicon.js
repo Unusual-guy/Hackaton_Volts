@@ -142,16 +142,6 @@ module.exports = {
         '<speaker audio="alice-sounds-game-powerup-2.opus"> Энергия третьей фазы',
     ],
 
-
-
-
-
-
-
-
-  
-    memoryFull2: 'Цитирую <speaker audio="alice-sounds-game-ping-1.opus">',
-  
   
     // когда фраза пользователя не понята
     fallback: [ 
