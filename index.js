@@ -14,7 +14,7 @@ admin.initializeApp({
 const db = admin.firestore();
 
 
-// Тело Yndex Cloude Function:
+// Тело Yandex Cloude Function:
 module.exports.skill = async (event) => {
   try {
     // Получаем из события запрос Алисы необходимые данные:
@@ -35,6 +35,8 @@ module.exports.skill = async (event) => {
     // Голосовое и звуковое сообщение юзеру:
     let ttsMsg = '';
 
+    // Приветствуем пользователя
+    let ttsMSG1 = '';
     // Получаем и переводим в нижний регистр сказанную юзером фразу:
     const userUtterance = lowerCase(request.original_utterance);
 
@@ -90,23 +92,37 @@ module.exports.skill = async (event) => {
 
     // ДИАЛОГ С ПОЛЬЗОВАТЕЛЕМ:
     let msg = ''; // переменная, в которой будет храниться ответ Алисы пользователю (полный ответ: реплика Алисы, конкретные данные из БД)
-    
-    msg = '${sample(lex.memoryFull1)} ${spokenTime}. ${lex.memoryFull2} ${memory} ${lex.promptForget}'
-    
-    
-    if (intent === INTENT.give_idDevice)
+    ttsMSG1 = '{sample(lex.hello)}';
 
-    ......
+    if (intent === INTENT.give_idDevice){
+      msg = '${sample(lex.idDevice)} ${didDevice} ${lex.polite}';
+    } else if (intent === INTENT.give_day){
+      msg = '${sample(lex.give_day)} ${dday} ${lex.polite}';
+    } else if (intent === INTENT.give_output_active_power){
+      msg = '${sample(lex.give_output_active_power)} ${doutput_active_power} ${lex.polite}';
+    } else if (intent === INTENT.give_battery_capacity){
+      msg = '${sample(lex.give_battery_capacity)} ${dbattery_capacity} ${lex.polite}';
+    } else if (intent === INTENT.give_solar_panel_input_power){
+      msg = '${sample(lex.give_solar_panel_input_power)} ${dsolar_panel_input_power} ${lex.polite}';
+    } else if (intent === INTENT.give_status){
+      msg = '${sample(lex.give_status)} ${dstatus} ${lex.polite}';
+    } else if (intent === INTENT.give_generge_total){
+      msg = '${sample(lex.give_generge_total)} ${dgenerge_total} ${lex.polite}';
+    } else if (intent === INTENT.give_generge_year){
+      msg = '${sample(lex.give_generge_year)} ${dgenerge_year} ${lex.polite}';
+    } else if (intent === INTENT.give_generge_month){
+      msg = '${sample(lex.give_month)} ${dmonth} ${lex.polite}';
+    } else if (intent === INTENT.give_generge_day){
+      msg = '${sample(lex.give_day)} ${dday} ${lex.polite}';
+    } else if (intent === INTENT.give_energe_fPhase){
+      msg = '${sample(lex.give_energe_fPhase)} ${denerge_fPhase} ${lex.polite}';
+    } else if (intent === INTENT.give_energe_sPhase){
+      msg = '${sample(lex.give_energe_sPhase)} ${denerge_sPhase} ${lex.polite}';
+    } else if (intent === INTENT.give_energe_tPhase){
+      msg = '${sample(lex.give_energe_tPhase)} ${denerge_tPhase} ${lex.polite}';
+
+      ttsMsg = `${msg}`;
    
-
-
-
-
-
-
-
-
-
 
     // Ответ Алисе:
     return {
