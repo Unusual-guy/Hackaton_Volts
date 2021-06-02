@@ -38,6 +38,8 @@ module.exports.skill = async (event) => {
     // Получаем и переводим в нижний регистр сказанную юзером фразу:
     const userUtterance = lowerCase(request.original_utterance);
 
+     // Определяем намерение пользователя:
+     const intent = getIntent(userUtterance, intent);
 
 
     // Обращаемся к БД за данными:
@@ -49,11 +51,6 @@ module.exports.skill = async (event) => {
       userData = doc.data();
     });
 
-
-
-    
-    // Определяем намерение пользователя:
-    const intent = getIntent(userUtterance, intant);
 
 
 
